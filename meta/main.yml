@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: php
   author: José Pedro Andrés
   description: Ondrej PHP - multiple PHP versions ppa
   company: none
