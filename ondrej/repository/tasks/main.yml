@@ -1,0 +1,5 @@
+---
+- name: "Ondrej PHP repository"
+  apt_repository:
+    repo: ppa:ondrej/php
+  when: macklus.php.ondrej.repository == true

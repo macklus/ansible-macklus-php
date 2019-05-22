@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - macklus.php/ondrej/repository
+    - macklus.php/ondrej/install

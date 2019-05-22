@@ -1,0 +1,30 @@
+---
+- name: "Ensure present PHP Packages"
+  apt:
+    name: [ "libphp{{ opv }}-embed", "php{{ opv }}-cgi", "php{{ opv }}-cli",  "php{{ opv }}-dev",
+    "php{{ opv }}-fpm", "php{{ opv }}-phpdbg", "php{{ opv }}-bcmath", "php{{ opv }}-bz2", "php{{ opv }}-common", "php{{ opv }}-curl",
+    "php{{ opv }}-dba", "php{{ opv }}-enchant", "php{{ opv }}-gd", "php{{ opv }}-gmp", "php{{ opv }}-imap", "php{{ opv }}-interbase",
+    "php{{ opv }}-intl", "php{{ opv }}-json", "php{{ opv }}-ldap", "php{{ opv }}-mbstring", "php{{ opv }}-mysql",
+    "php{{ opv }}-odbc", "php{{ opv }}-pgsql", "php{{ opv }}-pspell", "php{{ opv }}-readline", "php{{ opv }}-recode", "php{{ opv }}-snmp",
+    "php{{ opv }}-soap", "php{{ opv }}-sqlite3", "php{{ opv }}-sybase", "php{{ opv }}-tidy", "php{{ opv }}-xml", "php{{ opv }}-xmlrpc",
+    "php{{ opv }}-zip", "php{{ opv }}-opcache", "php{{ opv }}", "php{{ opv }}-xsl" ]
+    state: latest
+  with_items: "{{ macklus.php.ondrej.versions.present }}"
+  loop_control:
+    loop_var: opv
+  when: macklus.php.ondrej.install == true and (macklus.php.ondrej.versions.present|length>0)
+
+- name: "Ensure absent PHP Packages"
+  apt:
+    name: [ "libphp{{ opv }}-embed", "php{{ opv }}-cgi", "php{{ opv }}-cli",  "php{{ opv }}-dev",
+    "php{{ opv }}-fpm", "php{{ opv }}-phpdbg", "php{{ opv }}-bcmath", "php{{ opv }}-bz2", "php{{ opv }}-common", "php{{ opv }}-curl",
+    "php{{ opv }}-dba", "php{{ opv }}-enchant", "php{{ opv }}-gd", "php{{ opv }}-gmp", "php{{ opv }}-imap", "php{{ opv }}-interbase",
+    "php{{ opv }}-intl", "php{{ opv }}-json", "php{{ opv }}-ldap", "php{{ opv }}-mbstring", "php{{ opv }}-mysql",
+    "php{{ opv }}-odbc", "php{{ opv }}-pgsql", "php{{ opv }}-pspell", "php{{ opv }}-readline", "php{{ opv }}-recode", "php{{ opv }}-snmp",
+    "php{{ opv }}-soap", "php{{ opv }}-sqlite3", "php{{ opv }}-sybase", "php{{ opv }}-tidy", "php{{ opv }}-xml", "php{{ opv }}-xmlrpc",
+    "php{{ opv }}-zip", "php{{ opv }}-opcache", "php{{ opv }}", "php{{ opv }}-xsl" ]
+    state: absent
+  with_items: "{{ macklus.php.ondrej.versions.absent }}"
+  loop_control:
+    loop_var: opv
+  when: macklus.php.ondrej.install == true and (macklus.php.ondrej.versions.absent|length>0)
